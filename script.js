@@ -80,14 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
       // Remove classes after animation completes to avoid flashes
       setTimeout(() => {
         oldSlide.classList.remove('slide-exit');
-        oldSlide.style.opacity = '0';
+        oldSlide.classList.add('opacity-0');
       }, 700);
     }
 
     // In animation for new slide
     if (newSlide) {
       newSlide.classList.add('slide-enter');
-      newSlide.style.opacity = '1';
+      newSlide.classList.remove('opacity-0');
       newSlide.style.pointerEvents = 'auto';
 
       // Force a reflow to trigger animation

@@ -34,6 +34,10 @@ body {
   text-shadow: 0 0 10px rgba(0, 183, 175, 0.6), 0 0 20px rgba(0, 183, 175, 0.3);
 }
 
+.amber-glow {
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.6), 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
 .card-glow:hover, .card-active {
   box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
   border-color: rgba(16, 185, 129, 0.5);
