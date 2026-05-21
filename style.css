@@ -1,0 +1,95 @@
+/* Custom Style Sheet for Skoop Digital Signage */
+
+/* Core Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #05080c;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Scrollbar customizations (just in case) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.5);
+}
+
+/* Glow Effects */
+.green-glow {
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.6), 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.teal-glow {
+  text-shadow: 0 0 10px rgba(0, 183, 175, 0.6), 0 0 20px rgba(0, 183, 175, 0.3);
+}
+
+.card-glow:hover, .card-active {
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+.card-active-teal {
+  box-shadow: 0 0 25px rgba(0, 183, 175, 0.25);
+  border-color: rgba(0, 183, 175, 0.5);
+}
+
+/* Slide Transition Animations */
+.slide-element {
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-enter {
+  opacity: 0;
+  transform: scale(0.95) translateY(10px);
+}
+
+.slide-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.slide-exit {
+  opacity: 0;
+  transform: scale(1.02) translateY(-10px);
+}
+
+/* Floating animation for cards on digital signage */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Pulse Glow */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.05);
+  }
+}
+
+.pulse-bg-glow {
+  animation: pulseGlow 8s ease-in-out infinite;
+}

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full w-full overflow-hidden">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Midweek Deals - Skoop Signage</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter and Outfit (for punchy headers) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Tailwind Configuration for custom fonts and animations -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            outfit: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              green: '#10b981', // emerald-500
+              accent: '#00b7af', // vibrant teal/turquoise
+              dark: '#0a0f14',
+              card: 'rgba(16, 20, 24, 0.75)',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'spin-slow': 'spin 12s linear infinite',
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Custom Digital Signage Styles Sheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="h-full w-full select-none text-white overflow-hidden flex flex-col justify-between relative bg-black font-sans">
+
+  <!-- BACKGROUND LAYER -->
+  <div class="absolute inset-0 z-0 bg-cover bg-center opacity-40 transition-opacity duration-1000 scale-105" style="background-image: url('assets/background.jpg');"></div>
+  <div class="absolute inset-0 z-0 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark/90 pointer-events-none"></div>
+
+  <!-- SIGNAGE HEADER -->
+  <header class="relative z-10 w-full px-8 pt-6 pb-4 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent">
+    <!-- Brand Logo / Title -->
+    <div class="flex items-center space-x-3">
+      <!-- Custom dispensary leaf icon in Skoop branding style -->
+      <div class="w-10 h-10 rounded-xl bg-brand-green/20 border border-brand-green/40 flex items-center justify-center">
+        <svg class="w-6 h-6 text-brand-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2C12 2 14.5 7.5 19 8C19 8 16 11.5 16 16C16 16.2 16 22 12 22C8 22 8 16.2 8 16C8 11.5 5 8 5 8C9.5 7.5 12 2 12 2Z"/>
+          <path d="M12 8V22"/>
+          <path d="M8 14H16"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="font-outfit font-extrabold text-2xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">
+          SKOOP <span class="text-brand-green">DISPENSARY</span>
+        </h1>
+        <p class="text-xs text-gray-400 tracking-widest uppercase">Premium Signage Network</p>
+      </div>
+    </div>
+
+    <!-- Clock & Date Widget -->
+    <div class="text-right flex items-center space-x-6">
+      <div class="border-r border-white/10 pr-6 hidden md:block">
+        <div id="date-display" class="text-sm font-medium text-gray-300 uppercase tracking-widest">Thursday, May 21</div>
+        <div class="text-xs text-brand-green font-semibold tracking-wider uppercase text-right">Daily Specials</div>
+      </div>
+      <div>
+        <div id="clock-display" class="font-outfit font-black text-3xl tracking-tight text-white tabular-nums drop-shadow-md">
+          04:20 PM
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN SIGNAGE CONTAINER -->
+  <main class="relative z-10 flex-1 w-full px-8 py-4 flex flex-col justify-center items-center">
+
+    <!-- SLIDE CONTAINER -->
+    <div class="w-full max-w-6xl h-[520px] relative flex justify-center items-center">
+
+      <!-- SLIDE 1: HOME OVERVIEW (TUE - THU DEALS) -->
+      <div id="slide-overview" class="slide-element absolute inset-0 flex flex-col justify-between transition-all duration-700 ease-in-out">
+        <div class="text-center mt-4">
+          <span class="px-4 py-1.5 rounded-full bg-brand-green/10 border border-brand-green/30 text-brand-green font-bold text-xs uppercase tracking-widest drop-shadow-sm inline-block">
+            Limited Time Offers
+          </span>
+          <h2 class="font-outfit font-black text-5xl md:text-6xl uppercase tracking-tight mt-3 text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-300">
+            Midweek Madness
+          </h2>
+          <p class="text-gray-400 text-lg md:text-xl font-medium mt-2 max-w-2xl mx-auto">
+            Fuel your week with our exclusive Tuesday through Thursday specials.
+          </p>
+        </div>
+
+        <!-- 3 Days Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto max-w-5xl mx-auto w-full px-4">
+          <!-- Tuesday Card -->
+          <div class="bg-brand-card/70 backdrop-blur-md rounded-2xl p-6 border border-white/5 flex flex-col justify-between h-[280px] card-glow transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-brand-green/10 rounded-full blur-2xl group-hover:bg-brand-green/20 transition-all duration-300"></div>
+            <div>
+              <div class="flex justify-between items-start">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-green bg-brand-green/10 px-2.5 py-1 rounded-md">Tuesday</span>
+                <svg class="w-7 h-7 text-brand-green/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+                  <circle cx="12" cy="12" r="3" fill="currentColor" class="text-brand-green"/>
+                </svg>
+              </div>
+              <h3 class="font-outfit font-extrabold text-2xl uppercase mt-4 text-white">Edible Tuesday</h3>
+              <p class="text-gray-400 text-sm mt-2 line-clamp-3">Treat yourself to premium infused chocolates, gummies, and baked goods.</p>
+            </div>
+            <div class="border-t border-white/10 pt-4 flex justify-between items-baseline">
+              <span class="text-xs text-gray-400 uppercase tracking-wider">Save Big</span>
+              <span class="font-outfit font-black text-3xl text-brand-green green-glow">10% OFF</span>
+            </div>
+          </div>
+
+          <!-- Wednesday Card -->
+          <div class="bg-brand-card/70 backdrop-blur-md rounded-2xl p-6 border border-white/5 flex flex-col justify-between h-[280px] card-glow transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-brand-accent/10 rounded-full blur-2xl group-hover:bg-brand-accent/20 transition-all duration-300"></div>
+            <div>
+              <div class="flex justify-between items-start">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-2.5 py-1 rounded-md">Wednesday</span>
+                <svg class="w-7 h-7 text-brand-accent/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+              </div>
+              <h3 class="font-outfit font-extrabold text-2xl uppercase mt-4 text-white">Cart Wednesday</h3>
+              <p class="text-gray-400 text-sm mt-2 line-clamp-3">Vape in style with premium distillate, live resin, and full-spectrum cartridges.</p>
+            </div>
+            <div class="border-t border-white/10 pt-4 flex justify-between items-baseline">
+              <span class="text-xs text-gray-400 uppercase tracking-wider">Save Big</span>
+              <span class="font-outfit font-black text-3xl text-brand-accent teal-glow">10% OFF</span>
+            </div>
+          </div>
+
+          <!-- Thursday Card -->
+          <div class="bg-brand-card/70 backdrop-blur-md rounded-2xl p-6 border border-white/5 flex flex-col justify-between h-[280px] card-glow transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all duration-300"></div>
+            <div>
+              <div class="flex justify-between items-start">
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-md">Thursday</span>
+                <svg class="w-7 h-7 text-amber-400/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 18c0-1.1.9-2 2-2h8c1.1 0 2 .9 2 2M12 2v10M8 8h8"/>
+                </svg>
+              </div>
+              <h3 class="font-outfit font-extrabold text-2xl uppercase mt-4 text-white">Pre-Roll Thursday</h3>
+              <p class="text-gray-400 text-sm mt-2 line-clamp-3">Elevate your day with hand-rolled, premium house flower and infused pre-rolls.</p>
+            </div>
+            <div class="border-t border-white/10 pt-4 flex justify-between items-baseline">
+              <span class="text-xs text-gray-400 uppercase tracking-wider">Double Up</span>
+              <span class="font-outfit font-black text-3xl text-amber-400">BOGO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: TUESDAY - EDIBLES -->
+      <div id="slide-tuesday" class="slide-element absolute inset-0 flex flex-col md:flex-row items-center justify-between gap-8 p-6 transition-all duration-700 ease-in-out opacity-0 pointer-events-none">
+        <!-- Left details column -->
+        <div class="flex-1 space-y-6 text-left max-w-xl">
+          <span class="px-4 py-1.5 rounded-full bg-brand-green/10 border border-brand-green/30 text-brand-green font-bold text-xs uppercase tracking-widest inline-block">
+            Tuesday Specials
+          </span>
+          <h2 class="font-outfit font-black text-6xl md:text-7xl uppercase tracking-tight leading-none text-white">
+            10% OFF <br><span class="text-brand-green green-glow">EDIBLES</span>
+          </h2>
+          <p class="text-gray-300 text-lg md:text-xl font-normal leading-relaxed">
+            Satisfy your sweet tooth with our premium selection of edibles. From artisanal chocolates to vegan gummies, find your perfect dose today.
+          </p>
+          <div class="flex gap-4 pt-4">
+            <div class="bg-white/5 border border-white/10 rounded-xl px-5 py-3 flex flex-col justify-center">
+              <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Includes</span>
+              <span class="text-white font-bold font-outfit text-lg">Gummies & Chews</span>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl px-5 py-3 flex flex-col justify-center">
+              <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold font-sans">Brands Included</span>
+              <span class="text-white font-bold font-outfit text-lg">All House Brands</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right featured card -->
+        <div class="w-full md:w-[420px] bg-gradient-to-br from-brand-card/90 to-brand-dark rounded-3xl p-8 border border-brand-green/30 relative overflow-hidden flex flex-col justify-between h-[450px] shadow-2xl animate-float">
+          <div class="absolute -top-12 -right-12 w-48 h-48 bg-brand-green/20 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-black tracking-widest uppercase text-brand-green">FEATURED TUESDAY</span>
+            <span class="text-xs font-semibold bg-white/10 px-3 py-1 rounded-full uppercase">Tasty Treats</span>
+          </div>
+
+          <!-- Large Gummy / Candy graphic -->
+          <div class="my-auto flex flex-col items-center justify-center space-y-4">
+            <div class="w-28 h-28 rounded-2xl bg-gradient-to-tr from-brand-green to-emerald-400 flex items-center justify-center shadow-[0_0_40px_rgba(16,185,129,0.4)] animate-pulse-slow">
+              <!-- Sweet Candy Icon -->
+              <svg class="w-16 h-16 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+                <path d="M12 6a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 10a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/>
+              </svg>
+            </div>
+            <div class="text-center">
+              <h4 class="font-outfit font-black text-2xl uppercase tracking-tight">Kush Gummies</h4>
+              <p class="text-xs text-brand-green font-bold uppercase tracking-widest">100MG THC • 10 Servings</p>
+            </div>
+          </div>
+
+          <div class="border-t border-white/10 pt-6 flex justify-between items-center">
+            <div>
+              <span class="text-xs text-gray-400 uppercase tracking-widest">Tuesday Only</span>
+              <p class="text-white font-extrabold text-sm">Save 10% At Checkout</p>
+            </div>
+            <div class="text-right">
+              <span class="font-outfit font-black text-4xl text-brand-green green-glow">10% OFF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: WEDNESDAY - VAPE CARTS -->
+      <div id="slide-wednesday" class="slide-element absolute inset-0 flex flex-col md:flex-row items-center justify-between gap-8 p-6 transition-all duration-700 ease-in-out opacity-0 pointer-events-none">
+        <!-- Left details column -->
+        <div class="flex-1 space-y-6 text-left max-w-xl">
+          <span class="px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent font-bold text-xs uppercase tracking-widest inline-block">
+            Wednesday Specials
+          </span>
+          <h2 class="font-outfit font-black text-6xl md:text-7xl uppercase tracking-tight leading-none text-white">
+            10% OFF <br><span class="text-brand-accent teal-glow">VAPE CARTS</span>
+          </h2>
+          <p class="text-gray-300 text-lg md:text-xl font-normal leading-relaxed">
+            Elevate your vape collection with 10% off all cartridges on Wednesdays. Choose from our rich selection of live resin, full spectrum, and high-potency distillates.
+          </p>
+          <div class="flex gap-4 pt-4">
+            <div class="bg-white/5 border border-white/10 rounded-xl px-5 py-3 flex flex-col justify-center">
+              <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Cart Sizes</span>
+              <span class="text-white font-bold font-outfit text-lg">0.5g & 1.0g Options</span>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl px-5 py-3 flex flex-col justify-center">
+              <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Extraction</span>
+              <span class="text-white font-bold font-outfit text-lg">Live Resin & Distillate</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right featured card -->
+        <div class="w-full md:w-[420px] bg-gradient-to-br from-brand-card/90 to-brand-dark rounded-3xl p-8 border border-brand-accent/30 relative overflow-hidden flex flex-col justify-between h-[450px] shadow-2xl animate-float">
+          <div class="absolute -top-12 -right-12 w-48 h-48 bg-brand-accent/20 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-black tracking-widest uppercase text-brand-accent">FEATURED WEDNESDAY</span>
+            <span class="text-xs font-semibold bg-white/10 px-3 py-1 rounded-full uppercase">Pure Vape</span>
+          </div>
+
+          <!-- Large Vape Cartridge Icon -->
+          <div class="my-auto flex flex-col items-center justify-center space-y-4">
+            <div class="w-28 h-28 rounded-2xl bg-gradient-to-tr from-brand-accent to-cyan-400 flex items-center justify-center shadow-[0_0_40px_rgba(0,183,175,0.4)] animate-pulse-slow">
+              <!-- Vape/Cartridge SVG Icon -->
+              <svg class="w-16 h-16 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <rect x="9" y="10" width="6" height="11" rx="1"/>
+                <path d="M12 10V6M12 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                <line x1="10" y1="14" x2="14" y2="14" stroke-width="1.5"/>
+                <line x1="10" y1="17" x2="14" y2="17" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="text-center">
+              <h4 class="font-outfit font-black text-2xl uppercase tracking-tight">Vortex Carts</h4>
+              <p class="text-xs text-brand-accent font-bold uppercase tracking-widest">92% THC • Pure Terpenes</p>
+            </div>
+          </div>
+
+          <div class="border-t border-white/10 pt-6 flex justify-between items-center">
+            <div>
+              <span class="text-xs text-gray-400 uppercase tracking-widest">Wednesday Only</span>
+              <p class="text-white font-extrabold text-sm">Vape Special Price</p>
+            </div>
+            <div class="text-right">
+              <span class="font-outfit font-black text-4xl text-brand-accent teal-glow">10% OFF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: THURSDAY - PRE-ROLL BOGO -->
+      <div id="slide-thursday" class="slide-element absolute inset-0 flex flex-col md:flex-row items-center justify-between gap-8 p-6 transition-all duration-700 ease-in-out opacity-0 pointer-events-none">
+        <!-- Left details column -->
+        <div class="flex-1 space-y-6 text-left max-w-xl">
+          <span class="px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-bold text-xs uppercase tracking-widest inline-block">
+            Thursday Specials
+          </span>
+          <h2 class="font-outfit font-black text-6xl md:text-7xl uppercase tracking-tight leading-none text-white">
+            BOGO <br><span class="text-amber-400 text-shadow-[0_0_10px_rgba(245,158,11,0.5)]">PRE-ROLLS</span>
+          </h2>
+          <p class="text-gray-300 text-lg md:text-xl font-normal leading-relaxed">
+            Double up on Thursdays! Buy one pre-roll and get one absolutely free. Enjoy the absolute finest hand-selected flowers rolled to perfection for standard or infused papers.
+          </p>
+          <div class="flex gap-4 pt-4">
+            <div class="bg-white/5 border border-white/10 rounded-xl px-5 py-3 flex flex-col justify-center">
+              <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Offer Details</span>
+              <span class="text-white font-bold font-outfit text-lg">Buy One, Get One FREE</span>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl px-5 py-3 flex flex-col justify-center">
+              <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Excludes</span>
+              <span class="text-white font-bold font-outfit text-lg">Some Premium Multipacks</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right featured card -->
+        <div class="w-full md:w-[420px] bg-gradient-to-br from-brand-card/90 to-brand-dark rounded-3xl p-8 border border-amber-500/30 relative overflow-hidden flex flex-col justify-between h-[450px] shadow-2xl animate-float">
+          <div class="absolute -top-12 -right-12 w-48 h-48 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-black tracking-widest uppercase text-amber-400">FEATURED THURSDAY</span>
+            <span class="text-xs font-semibold bg-white/10 px-3 py-1 rounded-full uppercase">Fresh Flower</span>
+          </div>
+
+          <!-- Large Pre-roll / Cone Graphic -->
+          <div class="my-auto flex flex-col items-center justify-center space-y-4">
+            <div class="w-28 h-28 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 flex items-center justify-center shadow-[0_0_40px_rgba(245,158,11,0.4)] animate-pulse-slow">
+              <!-- Pre-Roll Cone SVG -->
+              <svg class="w-16 h-16 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="19" x2="19" y2="5" stroke-width="3"/>
+                <path d="M19 5l1.5-1.5c.8-.8.8-2 0-2.8s-2-.8-2.8 0L16.2 2.2"/>
+                <path d="M4.5 19.5c-.8.8-.8 2 0 2.8s2 .8 2.8 0L9 20.6"/>
+              </svg>
+            </div>
+            <div class="text-center">
+              <h4 class="font-outfit font-black text-2xl uppercase tracking-tight">Artisanal Cones</h4>
+              <p class="text-xs text-amber-400 font-bold uppercase tracking-widest">1G Premium Flower • Slow Burning</p>
+            </div>
+          </div>
+
+          <div class="border-t border-white/10 pt-6 flex justify-between items-center">
+            <div>
+              <span class="text-xs text-gray-400 uppercase tracking-widest">Thursday Only</span>
+              <p class="text-white font-extrabold text-sm">Of Equal or Lesser Value</p>
+            </div>
+            <div class="text-right">
+              <span class="font-outfit font-black text-4xl text-amber-400">BOGO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CAROUSEL NAVIGATION DOTS AND PROGRESS -->
+    <div class="mt-4 flex flex-col items-center space-y-4 w-full max-w-xl relative z-10">
+      <!-- Nav Dots -->
+      <div class="flex items-center space-x-3">
+        <button id="dot-0" class="w-3 h-3 rounded-full bg-brand-green border border-brand-green/30 shadow-[0_0_8px_rgba(16,185,129,0.5)] transition-all duration-300"></button>
+        <button id="dot-1" class="w-3 h-3 rounded-full bg-white/20 border border-white/10 hover:bg-white/40 transition-all duration-300"></button>
+        <button id="dot-2" class="w-3 h-3 rounded-full bg-white/20 border border-white/10 hover:bg-white/40 transition-all duration-300"></button>
+        <button id="dot-3" class="w-3 h-3 rounded-full bg-white/20 border border-white/10 hover:bg-white/40 transition-all duration-300"></button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- PROGRESS TIMELINE AND TICKER FOOTER -->
+  <footer class="relative z-10 w-full bg-black/90 border-t border-white/5">
+    <!-- Slide Progress Bar -->
+    <div class="w-full h-1 bg-white/5 relative">
+      <div id="progress-bar" class="h-full bg-gradient-to-r from-brand-green to-brand-accent transition-all duration-100 ease-linear" style="width: 0%;"></div>
+    </div>
+
+    <!-- Signage bottom announcements ticker -->
+    <div class="w-full py-3.5 px-6 flex justify-between items-center bg-brand-dark/80 backdrop-blur-md">
+      <!-- Announcement Ticker Label -->
+      <div class="flex items-center space-x-2 border-r border-white/10 pr-4 shrink-0">
+        <span class="w-2.5 h-2.5 rounded-full bg-brand-green animate-ping"></span>
+        <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Announcements</span>
+      </div>
+
+      <!-- Ticker Scrolling text -->
+      <div class="flex-1 overflow-hidden mx-6 relative">
+        <div id="ticker-text" class="whitespace-nowrap inline-block text-sm font-semibold tracking-wide text-gray-300 transform translate-x-0 transition-transform duration-1000">
+          🌱 10% off edibles Tuesday • 💨 10% off carts Wednesday • 🔥 Thursday is BOGO Pre-Rolls • Must be 21+ with valid ID • Join our loyalty program for daily rewards!
+        </div>
+      </div>
+
+      <!-- Footer branding info -->
+      <div class="shrink-0 pl-4 border-l border-white/10 hidden lg:block">
+        <span class="text-xs text-gray-500 font-bold uppercase tracking-widest">SKOOP SIGNAGE NETWORK</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Signage Controller Script -->
+  <script src="script.js"></script>
+</body>
+</html>
